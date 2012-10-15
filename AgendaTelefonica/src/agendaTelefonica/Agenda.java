@@ -1,19 +1,23 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Sistema de Agenda telefonica utilizando árvore B
+ * Trabalho de Estrutura de Dados 2012
+ * Professor: Josué Castro
+ * Alunos: Gustavo Gargione, Hikar...., Samuel Blum Vorpagel.
+ * @version 0.1
  */
 package agendaTelefonica;
 
 /**
- *
+ * Classe Principal do projeto
  * @author samuel
  */
 public class Agenda {
 
     /**
-     * @param args the command line arguments
+     * Metodo Main do projeto
+     * @param args 
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        //Aqui inicia o programa
     }
 }
