@@ -12,63 +12,53 @@ package agendaTelefonica.arvore;
  */
 public class ArvoreB {
 
-    private No raiz;
+    /*
+     * const t = 2; 
+     typedef struct no_arvoreB arvoreB; 
 
-    public ArvoreB() {
-    }
-
-    public No getRaiz() {
-        return raiz;
-    }
-
-    public void setRaiz(No raiz) {
-        this.raiz = raiz;
-    }
-
-    /**
-     * Busca Recursiva, metodo utiliza a string k a ser buscada, partindo da
-     * raiz ponteiro
-     *
-     * @param k
-     * @param ponteiro
-     * @return
+     struct no_arvoreB { 
+     int num_chaves; 
+     char chaves[2*t-1];
+     arvoreB *filhos[2*t]; 
+     bool folha; 
+     };
      */
-    public No Busca(String k, No ponteiro) {
-        //Se a raiz for null ou seja não tiver nada instanciado nela retorna null
-        if (ponteiro != null) {
+    private int t = 2;
+    private int numChaves;
+    private Chave[] chave = new Chave[t * 2 - 1];
+    private ArvoreB[] filho = new ArvoreB[t * 2];
 
-            for (int i = 0; i < ponteiro.getNumChaves(); i++) {
-                if (k.equals(ponteiro.getChaves()[i].getDado())) {
-                    return ponteiro;
-                } else {
-                    if (k.compareTo(ponteiro.getChaves()[i].getDado()) == -1) {
-                        return Busca(k, ponteiro.getFilho()[i]);
-                    } else {
-                        if ((i == (ponteiro.getNumChaves() - 1))
-                                && (k.compareTo(ponteiro.getChaves()[i].getDado())) == 1) {
-                            return Busca(k, ponteiro.getFilho()[i + 1]);
-                        }
-                    }
-                }
-            }
-        }
-        return null;
+    public ArvoreB(Chave[] chave, ArvoreB[] filho) {
+        this.numChaves = 0;
+        this.chave = chave;
+        this.filho = filho;
     }
 
-    public String toString(No raiz) {
-        int i;
-        String string = null;
-        if (raiz != null) {
-            for (i = 0; i < raiz.getNumChaves(); i++) {
-                toString(raiz.getFilho()[i]);
-                string = string + raiz.toString(raiz, i); //Talvez tenha que tirar o string +, recursividade embanana minha mente :p
-                System.out.println(raiz.toString(raiz, i));
-            }
-            toString(raiz.getFilho()[i]);
-            return string;
-        } else {
-            return null;
-        }
-        
+    public int getT() {
+        return t;
+    }
+
+    public int getNumChaves() {
+        return numChaves;
+    }
+
+    public void setNumChaves(int numChaves) {
+        this.numChaves = numChaves;
+    }
+
+    public Chave[] getChave() {
+        return chave;
+    }
+
+    public void setChave(Chave[] chave) {
+        this.chave = chave;
+    }
+
+    public ArvoreB[] getFilho() {
+        return filho;
+    }
+
+    public void setFilho(ArvoreB[] filho) {
+        this.filho = filho;
     }
 }

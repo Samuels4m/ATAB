@@ -22,8 +22,6 @@ public class Agenda {
      * @param args
      */
     public static void main(String[] args) {
-        ArvoreB arvoreB = new ArvoreB();
-        System.out.println(arvoreB.Busca("B", arvoreB.getRaiz()));
-        System.out.println(arvoreB.toString());
+      
     }
 }
