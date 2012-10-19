@@ -54,4 +54,21 @@ public class Pessoa {
         this.excluido = excluido;
     }
     
+    public char[] toChars () {
+        int i, j=0;
+        char[] pessoa = new char[95];
+        for (i = 0; i < nome.length; i++) {
+            pessoa[j] = nome[i];
+            j++;
+        }
+        for (i = 0; i < endereco.length; i++) {
+            pessoa[j] = endereco[i];
+            j++;
+        }
+        for (i = 0; i < telefone.length; i++) {
+            pessoa[j] = telefone[i];
+            j++;
+        }
+        return pessoa;
+    }
 }
