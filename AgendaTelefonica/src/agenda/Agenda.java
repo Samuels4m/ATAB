@@ -76,7 +76,7 @@ public class Agenda {
             } else {
                 b = (byte) '1';
             }
-            
+
 
             RandomAccessFile raf;
 
@@ -145,15 +145,53 @@ public class Agenda {
 
         return mudou;
     }
-    
-    public boolean alterarPessoa (Pessoa pessoa, int pos) {
+
+    public boolean alterarPessoa(Pessoa pessoa, int pos) {
         if (removerPessoa(pos)) {
             if (salvarPessoa(pessoa)) {
                 return true;
             }
         }
-        
+
         return false;
     }
-    
+
+    public Pessoa pegarPessoa(int pos) {
+        try {
+            byte[] n = new byte[30];
+            byte[] e = new byte[50];
+            byte[] t = new byte[15];
+            byte[] b = new byte[1];
+
+            
+
+            RandomAccessFile raf;
+
+            raf = new RandomAccessFile(this.arquivo, "rw");
+            
+            
+            raf.read(n);
+            raf.read(e);
+            raf.read(t);
+            raf.read(b);
+            
+            String nome = new String(n);
+            String endereco = new String(e);
+            String telefone = new String(t);
+            boolean excluido = true;
+
+            if (b[0] == '0') {
+                excluido = false;
+            }
+            
+            Pessoa pessoa = new Pessoa(nome, endereco, telefone, excluido);
+            return pessoa;
+        } catch (IOException ex) {
+            Logger.getLogger(Agenda.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+        
+        
+
+    }
 }

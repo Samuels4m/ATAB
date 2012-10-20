@@ -31,5 +31,7 @@ public class Main {
         pessoa = new Pessoa("Pel", "Pelzim", "3049", true);
         
         System.out.println(agenda.alterarPessoa(pessoa, 96));
+        pessoa = agenda.pegarPessoa(96);
+        System.out.println(pessoa.getNome() + pessoa.getEndereco() + pessoa.getTelefone() + pessoa.isExcluido());
     }
 }

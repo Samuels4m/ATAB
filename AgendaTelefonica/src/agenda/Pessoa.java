@@ -21,6 +21,8 @@ public class Pessoa {
         this.telefone = telefone;
         this.excluido = excluido;
     }
+    
+    
 
     public String getNome() {
         return nome;
