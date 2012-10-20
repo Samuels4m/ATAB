@@ -55,22 +55,28 @@ public class Agenda {
         return cont;
     }
 
-    public boolean salvarPessoa(String nome, String endereco, String telefone) {
+    public boolean salvarPessoa(Pessoa pessoa) {
         try {
             byte[] n = new byte[30];
             byte[] e = new byte[50];
             byte[] t = new byte[15];
+            byte b;
 
-            for (int i = 0; i < nome.length(); i++) {
-                n[i] = (byte) nome.charAt(i);
+            for (int i = 0; i < pessoa.getNome().length(); i++) {
+                n[i] = (byte) pessoa.getNome().charAt(i);
             }
-            for (int i = 0; i < endereco.length(); i++) {
-                e[i] = (byte) endereco.charAt(i);
+            for (int i = 0; i < pessoa.getEndereco().length(); i++) {
+                e[i] = (byte) pessoa.getEndereco().charAt(i);
             }
-            for (int i = 0; i < telefone.length(); i++) {
-                t[i] = (byte) telefone.charAt(i);
+            for (int i = 0; i < pessoa.getTelefone().length(); i++) {
+                t[i] = (byte) pessoa.getTelefone().charAt(i);
             }
-
+            if (pessoa.isExcluido()) {
+                b = (byte) '0';
+            } else {
+                b = (byte) '1';
+            }
+            
 
             RandomAccessFile raf;
 
@@ -80,6 +86,7 @@ public class Agenda {
             raf.write(n);
             raf.write(e);
             raf.write(t);
+            raf.write(b);
             raf.close();
 
             return true;
@@ -90,13 +97,13 @@ public class Agenda {
     }
 
     public void atualizaQuantPessoa() {
-        this.quantPessoa = contarPessoa() / 95;
+        this.quantPessoa = contarPessoa() / 96;
     }
 
     public boolean removerPessoa(int Pos) {
         boolean mudou = false;
         try {
-            byte[] buffer = new byte[95];
+            byte[] buffer = new byte[96];
             File backup = new File("backup.txt");
             RandomAccessFile raf;
             RandomAccessFile rafB;
@@ -108,7 +115,7 @@ public class Agenda {
                 raf.seek(0);
                 rafB.seek(0);
 
-                for (int i = 0; i < raf.length(); i = i + 95) {
+                for (int i = 0; i < raf.length(); i = i + 96) {
                     raf.read(buffer);
                     if (i != Pos) {
                         rafB.write(buffer);
@@ -125,7 +132,7 @@ public class Agenda {
 
             raf = new RandomAccessFile(this.arquivo, "rw");
             rafB = new RandomAccessFile(backup, "rw");
-            for (int i = 0; i < rafB.length(); i = i + 95) {
+            for (int i = 0; i < rafB.length(); i = i + 96) {
                 rafB.read(buffer);
                 raf.write(buffer);
             }
@@ -138,4 +145,15 @@ public class Agenda {
 
         return mudou;
     }
+    
+    public boolean alterarPessoa (Pessoa pessoa, int pos) {
+        if (removerPessoa(pos)) {
+            if (salvarPessoa(pessoa)) {
+                return true;
+            }
+        }
+        
+        return false;
+    }
+    
 }

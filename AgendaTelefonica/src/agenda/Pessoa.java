@@ -10,39 +10,39 @@ package agenda;
  */
 public class Pessoa {
     
-    private char[] nome = new char[30];
-    private char[] endereco = new char[50];
-    private char[] telefone = new char[30];
+    private String nome;
+    private String endereco;
+    private String telefone;
     private boolean excluido;
 
-    public Pessoa(char[] nome, char[] endereco, char[] telefone) {
+    public Pessoa(String nome, String endereco, String telefone, boolean excluido) {
         this.nome = nome;
         this.endereco = endereco;
         this.telefone = telefone;
-        this.excluido = false;
+        this.excluido = excluido;
     }
 
-    public char[] getNome() {
+    public String getNome() {
         return nome;
     }
 
-    public void setNome(char[] nome) {
+    public void setNome(String nome) {
         this.nome = nome;
     }
 
-    public char[] getEndereco() {
+    public String getEndereco() {
         return endereco;
     }
 
-    public void setEndereco(char[] endereco) {
+    public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
 
-    public char[] getTelefone() {
+    public String getTelefone() {
         return telefone;
     }
 
-    public void setTelefone(char[] telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
 
@@ -53,22 +53,5 @@ public class Pessoa {
     public void setExcluido(boolean excluido) {
         this.excluido = excluido;
     }
-    
-    public char[] toChars () {
-        int i, j=0;
-        char[] pessoa = new char[95];
-        for (i = 0; i < nome.length; i++) {
-            pessoa[j] = nome[i];
-            j++;
-        }
-        for (i = 0; i < endereco.length; i++) {
-            pessoa[j] = endereco[i];
-            j++;
-        }
-        for (i = 0; i < telefone.length; i++) {
-            pessoa[j] = telefone[i];
-            j++;
-        }
-        return pessoa;
-    }
+
 }

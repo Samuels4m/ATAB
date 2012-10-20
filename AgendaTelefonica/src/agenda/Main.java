@@ -11,13 +11,25 @@ import java.io.File;
  * @author samuel
  */
 public class Main {
-
+    
     public static void main(String args[]) {
         File arquivo = new File("dados.txt");
+        Pessoa pessoa;
         Agenda agenda = new Agenda(arquivo);
-       // agenda.salvarPessoa("Samuel", "Rua Rio da Paz", "297");
-       // agenda.salvarPessoa("Pelego", "Rua Pelegada", "4321");
+        
+        pessoa = new Pessoa("Samuel", "Rua Rio da Paz", "297", false);
+        agenda.salvarPessoa(pessoa);
+        
+        pessoa = new Pessoa("Pelego", "Rua Pelegada", "4321", false);
+        agenda.salvarPessoa(pessoa);
+        
+        pessoa = new Pessoa("Poim", "Rua Pel", "43", false);
+        agenda.salvarPessoa(pessoa);
+        
         agenda.atualizaQuantPessoa();
-        System.out.println(agenda.removerPessoa(0));
+        
+        pessoa = new Pessoa("Pel", "Pelzim", "3049", true);
+        
+        System.out.println(agenda.alterarPessoa(pessoa, 96));
     }
 }
