@@ -89,12 +89,26 @@ public class Main {
                     int fim = 0;
                     
                     raf = new RandomAccessFile(file, "rw");
-                    byte[] n = new byte[30];
-                    raf.seek(fim);
+                    byte[] n = new byte[15];
+                    raf.seek(80);
                     raf.read(n);
                     String teste = new String(n, "UTF-8");
                     System.out.println(teste);
+                    
+                    n = new byte[50];
+                    raf.seek(30);
+                    raf.read(n);
+                    teste = new String(n, "UTF-8");
+                    System.out.println(teste);
+                    //o seek ta em 0 ou seja inicio do arquivo
+                    //ler os 30 proximos byte partindo do seek
+                    n = new byte[30];
+                    raf.seek(0);
+                    raf.read(n);
+                    teste = new String(n, "UTF-8");
+                    System.out.println(teste);
                     raf.close();
+                    
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
